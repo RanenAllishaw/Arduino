@@ -3,7 +3,7 @@ Blink
 Programmer: Ranen Allishaw
 Date: NOV/14/2022
 Program: Blink
-Verion: 1.1
+Verion: 1.2
 */
 
 // the setup function runs once when you press reset or power the board
@@ -15,7 +15,7 @@ void setup() {
 // the loop function runs over and over again forever
 void loop() {
   digitalWrite(12, HIGH);   // turn the LED on (HIGH is the voltage level)
-  delay(100);                       // wait for a second
+  delay(2000);                       // wait for a second
   digitalWrite(12, LOW);    // turn the LED off by making the voltage LOW
-  delay(100);                       // wait for a second
+  delay(500);                       // wait for a second
 }
