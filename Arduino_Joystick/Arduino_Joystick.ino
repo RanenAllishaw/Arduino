@@ -2,33 +2,42 @@
 Programmer: Ranen Allishaw
 Date: December 7 2022
 Program: Arduino Joystick
-Resource: https://exploreembedded.com/wiki/Analog_JoyStick_with_Arduino
+Resource: https://create.arduino.cc/projecthub/MisterBotBreak/how-to-use-a-joystick-with-serial-monitor-1f04f0https://create.arduino.cc/projecthub/MisterBotBreak/how-to-use-a-joystick-with-serial-monitor-1f04f0
 */
 
-#include "LedControl.h"
-#define joyX A0
-#define joyY A1
- 
-int xMap, yMap, xValue, yValue;
-LedControl lc=LedControl(12,11,10,1);
- 
+int VRx = A0;
+int VRy = A1;
+int SW = 2;
+
+int xPosition = 0;
+int yPosition = 0;
+int SW_state = 0;
+int mapX = 0;
+int mapY = 0;
+
 void setup() {
-  Serial.begin(115200);
- 
-  lc.shutdown(0,false);
-  /* Set the brightness to a medium values */
-  lc.setIntensity(0,8);
-  /* and clear the display */
-  lc.clearDisplay(0);
+  Serial.begin(9600); 
+  
+  pinMode(VRx, INPUT);
+  pinMode(VRy, INPUT);
+  pinMode(SW, INPUT_PULLUP); 
+  
 }
- 
+
 void loop() {
-  // put your main code here, to run repeatedly:
-  xValue = analogRead(joyX);
-  yValue = analogRead(joyY);
-  xMap = map(xValue, 0,1023, 0, 7);
-  yMap = map(yValue,0,1023,7,0);
-  lc.setLed(0,xMap,yMap,true);
-  lc.clearDisplay(0);
- 
+  xPosition = analogRead(VRx);
+  yPosition = analogRead(VRy);
+  SW_state = digitalRead(SW);
+  mapX = map(xPosition, 0, 1023, -512, 512);
+  mapY = map(yPosition, 0, 1023, -512, 512);
+  
+  Serial.print("X: ");
+  Serial.print(mapX);
+  Serial.print(" | Y: ");
+  Serial.print(mapY);
+  Serial.print(" | Button: ");
+  Serial.println(SW_state);
+
+  delay(100);
+  
 }
