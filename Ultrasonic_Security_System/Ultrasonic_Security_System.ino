@@ -46,7 +46,7 @@ void loop() {
   else {
     digitalWrite(LEDlampYellow,LOW);
   }
-  if (distance < 5) {
+  if (distanceincm < 5) {
     digitalWrite(LEDlampRed, HIGH);
     sound = 1000;
 }
@@ -59,7 +59,7 @@ void loop() {
     noTone(soundbuzzer);
   }
   else {
-    Serial.print(distance);
+    Serial.print(distanceincm);
     Serial.println(" cm");
     tone(buzzer, sound);
   }
