@@ -43,13 +43,15 @@ void loop() {
   
   if (distanceincm <= 6 && distanceincm >= 2) {
     digitalWrite(LEDlampYellow, HIGH);
+    Serial.println("Start slowing down more!");
 }
   else {
     digitalWrite(LEDlampYellow,LOW);
   }
-  if (distanceincm <= 2 && distanceincm >= 0) {
+  if (distanceincm <= 2 && distanceincm >= 1) {
     digitalWrite(LEDlampRed, HIGH);
     tone(soundbuzzer, sound);
+    Serial.println("Stop!");
 }
   else {
     digitalWrite(LEDlampRed,LOW);
